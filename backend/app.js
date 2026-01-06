@@ -1,12 +1,17 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import redis from './config/redis.js';
 
 dotenv.config();
 
 const app = express();
 
 app.use(express.json());
+await redis.set("app:name", "SmartInventory");
+const name = await redis.get("app:name");
+
+console.log(name); // SmartInventory
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('MongoDB connected'))
