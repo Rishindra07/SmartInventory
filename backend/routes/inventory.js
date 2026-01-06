@@ -1,4 +1,4 @@
-import Router from "express";
+import { Router } from "express";
 import {
     getInventory,
     reserveInventory
@@ -6,7 +6,8 @@ import {
 const router = Router();
 
 
-router.post("/inventory/reserve", reserveInventory);
-router.get("/inventory/:sku", getInventory);
+router.post("/reserve", reserveInventory);
+router.get("/:sku", getInventory);
+
 
 export default router

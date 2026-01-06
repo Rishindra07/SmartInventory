@@ -1,8 +1,12 @@
 import {Router} from "express";
-
+import {
+    checkoutConfirm,
+    checkoutCancel
+} from '../controllers/checkoutControllers.js'
 const router = Router();
 
-router.post('/checkout/confirm',checkoutConfirm)
-router.post("/checkout/cancel",checkoutCancel)
+router.post("/confirm", checkoutConfirm);
+router.post("/cancel", checkoutCancel);
+
 
 export default router

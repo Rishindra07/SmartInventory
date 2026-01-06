@@ -2,6 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import redis from './config/redis.js';
+import inventoryRoutes from './routes/inventory.js';
+import checkoutRoutes from './routes/checkout.js';
 
 dotenv.config();
 
@@ -13,9 +15,14 @@ const name = await redis.get("app:name");
 
 console.log(name); // SmartInventory
 
+
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
+
+app.use('/inventory', inventoryRoutes);
+app.use('/checkout', checkoutRoutes);
+
 
 app.get('/', (req, res) => {
     res.send('API is running...');
