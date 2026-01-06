@@ -3,7 +3,6 @@ import redis from '../config/redis.js'
 
 const RESERVATION_TTL = 300 // 5 minutes
 
-// ---------------- GET INVENTORY ----------------
 export const getInventory = async (req, res) => {
   const { sku } = req.params
 
@@ -18,10 +17,10 @@ export const getInventory = async (req, res) => {
       await redis.set(`product:${sku}:stock`, stock)
     }
 
-    res.json({ sku, availableStock: Number(stock) })
+    return res.json({ sku, availableStock: Number(stock) })
   } catch (err) {
     console.error(err)
-    res.status(500).json({ message: 'Internal server error' })
+    return res.status(500).json({ message: 'Internal server error' })
   }
 }
 
