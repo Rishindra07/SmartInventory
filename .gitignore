@@ -1,0 +1,14 @@
+# Ignore everything outside this project
+../*
+
+# Common ignores
+node_modules/
+build/
+dist/
+.idea/
+.vscode/
+*.log
+*.lnk
+*.pdf
+*.docx
+*.zip
